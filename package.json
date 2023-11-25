@@ -3,11 +3,9 @@
     "dev": "bun run --hot src/index.ts"
   },
   "dependencies": {
-    "@types/multer": "^1.4.11",
-    "aws-sdk": "^2.1502.0",
+    "@aws-sdk/client-s3": "^3.456.0",
     "dotenv": "^16.3.1",
-    "hono": "^3.10.2",
-    "multer": "^1.4.5-lts.1"
+    "hono": "^3.10.2"
   },
   "devDependencies": {
     "bun-types": "^1.0.7"
