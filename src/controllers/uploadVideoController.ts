@@ -22,7 +22,7 @@ const uploadVideo = async (context: Context<Env, "/upload", {}>) => {
     writeFileSync(`${tempPath}/${fileName}`, buffer);
     const fileBuffer = readFileSync(`${tempPath}/${fileName}`);
     await uploadToS3(fileName, fileBuffer);
-    rmSync(`${tempPath}/Martin Garrix - Gold Skies.mp4`);
+    rmSync(`${tempPath}/${fileName}`);
     return context.json({
       error: false,
       message: "Archivo subido correctamente.",
