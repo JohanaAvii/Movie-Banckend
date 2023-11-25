@@ -8,7 +8,9 @@ profile.json
 
 node_modules
 node_modules/*
+temp
 .envrc
+.env
 .swcrc
 yarn.lock
 dist

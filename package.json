@@ -1,9 +1,13 @@
 {
+  "name": "marine-films-backend-films",
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "dev": "bun run --hot src/index.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.456.0",
+    "@aws-sdk/credential-providers": "^3.454.0",
     "dotenv": "^16.3.1",
     "hono": "^3.10.2"
   },
