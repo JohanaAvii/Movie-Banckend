@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Actores {
+  id            Int                  @id @default(autoincrement())
+  url_imagen    String
+  url_biografia String
+  pelicula_id   Int
+  Pelicula      ActoresOnPeliculas[]
+}
+
+model Pelicula {
+  id                 Int                  @id @default(autoincrement())
+  nombre             String
+  sipnosis           String
+  fecha_distribucion String               @db.VarChar(4)
+  promocionar        Boolean?             @default(true)
+  duracion           Float?
+  distribuidor       String               @db.VarChar(20)
+  isan               String               @db.VarChar(96)
+  url_poster         String
+  aws_url            String?
+  aws_trailer        String?
+  solicitud          Solicitud            @relation(fields: [solicitud_id], references: [id])
+  solicitud_id       Int                  @unique
+  Actores            ActoresOnPeliculas[]
+}
+
+model ActoresOnPeliculas {
+  actor       Actores  @relation(fields: [actor_id], references: [id])
+  actor_id    Int
+  pelicula    Pelicula @relation(fields: [pelicula_id], references: [id])
+  pelicula_id Int
+
+  @@id([actor_id, pelicula_id])
+}
+
+model Solicitud {
+  id              Int               @id @default(autoincrement())
+  estado          Solicitud_estado? @default(PENDIENTE)
+  fecha_envio     DateTime?         @default(now())
+  fecha_respuesta DateTime?
+  observaciones   String?
+  usuario_id      Int
+  Usuario         Usuario           @relation(fields: [usuario_id], references: [id])
+  Pelicula        Pelicula?
+
+  @@index([usuario_id], map: "Solicitud_usuario_id_fkey")
+}
+
+model Usuario {
+  id               Int         @id @default(autoincrement())
+  correo           String      @unique @db.VarChar(50)
+  genero           String      @db.Char(1)
+  telefono         String      @db.VarChar(10)
+  rol              Usuario_rol
+  password         String
+  primer_apellido  String      @db.VarChar(20)
+  primer_nombre    String      @db.VarChar(20)
+  segundo_apellido String?     @db.VarChar(20)
+  segundo_nombre   String?     @db.VarChar(20)
+  Solicitud        Solicitud[]
+}
+
+enum Solicitud_estado {
+  PENDIENTE
+  RECHAZADA
+  APROBADA
+}
+
+enum Usuario_rol {
+  USUARIO
+  ADMIN
+  PRODUCTOR
+}
