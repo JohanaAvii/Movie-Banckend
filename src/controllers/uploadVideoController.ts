@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync, rmSync, existsSync, mkdirSync } from "fs";
 import { join } from "path";
 import { uploadToS3 } from "../services/awsService";
 
-const uploadVideo = async (context: Context<Env, "/upload", {}>) => {
+const uploadVideo = async (context: Context<Env, "/movie/upload", {}>) => {
   const tempPath = join(import.meta.dir, "../../temp");
   if (!existsSync(tempPath)) {
     mkdirSync(tempPath);
