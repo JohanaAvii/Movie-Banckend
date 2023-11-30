@@ -10,7 +10,7 @@ const updateRequest = async (
     try {
       await prismaClient.$connect();
     } catch (error) {
-      reject(error);
+      return reject(error);
     }
 
     try {
@@ -32,6 +32,8 @@ const updateRequest = async (
       resolve(request);
     } catch (error) {
       reject(error);
+    } finally {
+      prismaClient.$disconnect();
     }
   });
 };

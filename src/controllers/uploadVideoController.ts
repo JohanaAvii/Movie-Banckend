@@ -19,7 +19,7 @@ const uploadVideo = async (context: Context<Env, "/movie/upload", {}>) => {
       400
     );
 
-  const fileName = `id${body.request}uuid${crypto.randomUUID()}.mp4`;
+  const fileName = `id${body.movie}uuid${crypto.randomUUID()}.mp4`;
   fileName.replace("-", "");
 
   try {

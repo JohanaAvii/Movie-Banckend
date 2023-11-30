@@ -6,7 +6,7 @@ const createMovie = async (userId: number, movieData: Pelicula) => {
     try {
       await prismaClient.$connect();
     } catch (error) {
-      reject(error);
+      return reject(error);
     }
 
     try {
@@ -30,8 +30,34 @@ const createMovie = async (userId: number, movieData: Pelicula) => {
       resolve(request);
     } catch (error) {
       reject(error);
+    } finally {
+      prismaClient.$disconnect();
     }
   });
 };
 
-export { createMovie };
+const linkAWSVideo = async (awsUrl: string, movieId: number) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await prismaClient.$connect();
+    } catch (error) {
+      return reject(error);
+    }
+
+    try {
+      const movie = await prismaClient.pelicula.update({
+        where: {
+          id: movieId,
+        },
+        data: {
+          aws_url: awsUrl,
+        },
+      });
+
+      resolve(movie);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+export { createMovie, linkAWSVideo };
