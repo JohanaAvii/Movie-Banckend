@@ -1,7 +1,7 @@
 import { Solicitud_estado } from "@prisma/client";
 import prismaClient from "../helpers/prismaClient";
 
-const updateRequest = async (
+export const updateRequest = async (
   requestId: number,
   status: Solicitud_estado,
   observation: string
@@ -37,5 +37,3 @@ const updateRequest = async (
     }
   });
 };
-
-export { updateRequest };

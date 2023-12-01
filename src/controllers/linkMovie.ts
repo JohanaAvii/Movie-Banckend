@@ -1,5 +1,5 @@
 import { Context, Env } from "hono";
-import { linkAWSVideo } from "../models/movie";
+import { linkAWSVideo } from "../models";
 
 const linkMovie = async (context: Context<Env, "/lambda/link-movie", {}>) => {
   try {

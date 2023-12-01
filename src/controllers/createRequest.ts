@@ -1,5 +1,5 @@
 import { Context, Env } from "hono";
-import { createMovie } from "../models/movie";
+import { createMovie } from "../models";
 import { decode } from "hono/jwt";
 
 const createRequest = async (context: Context<Env, "/movie/request", {}>) => {

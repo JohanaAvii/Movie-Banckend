@@ -1,7 +1,7 @@
 import { Pelicula } from "@prisma/client";
 import prismaClient from "../helpers/prismaClient";
 
-const createMovie = async (userId: number, movieData: Pelicula) => {
+export const createMovie = async (userId: number, movieData: Pelicula) => {
   return new Promise(async (resolve, reject) => {
     try {
       await prismaClient.$connect();
@@ -35,29 +35,3 @@ const createMovie = async (userId: number, movieData: Pelicula) => {
     }
   });
 };
-
-const linkAWSVideo = async (awsUrl: string, movieId: number) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      await prismaClient.$connect();
-    } catch (error) {
-      return reject(error);
-    }
-
-    try {
-      const movie = await prismaClient.pelicula.update({
-        where: {
-          id: movieId,
-        },
-        data: {
-          aws_url: awsUrl,
-        },
-      });
-
-      resolve(movie);
-    } catch (error) {
-      reject(error);
-    }
-  });
-};
-export { createMovie, linkAWSVideo };

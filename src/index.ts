@@ -1,9 +1,12 @@
+import {
+  uploadVideo,
+  createRequest,
+  respondRequestController,
+  linkMovie,
+  movieListing,
+} from "./controllers";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { uploadVideo } from "./controllers/uploadVideoController";
-import { createRequest } from "./controllers/createRequest";
-import { respondRequestController } from "./controllers/respondRequest";
-import { linkMovie } from "./controllers/linkMovie";
 import { jwt } from "hono/jwt";
 import { validateFields } from "./services/validateFields";
 import { requestSchema, respondSchema } from "./schemas";
@@ -18,14 +21,16 @@ app.use(
 );
 app.use(cors());
 
+app.post("/lambda/link-movie", linkMovie);
+
 app.post("/movie/upload", uploadVideo);
+app.get("/movie/listing", movieListing);
 app.post("/movie/request", validateFields(requestSchema), createRequest);
 app.post(
   "/movie/request/response",
   validateFields(respondSchema),
   respondRequestController
 );
-app.post("/lambda/link-movie", linkMovie);
 
 console.log(`Bun run on: ${process.env.PORT}`);
 
