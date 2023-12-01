@@ -10,11 +10,11 @@ const uploadVideo = async (context: Context<Env, "/movie/upload", {}>) => {
   }
   const body = await context.req.parseBody();
   const video = body.video as File;
-  if (video == null)
+  if (video == null || body.movie == null)
     return context.json(
       {
         error: false,
-        message: "Se necesita el video a subir",
+        message: "Se necesita el video a subir y el id",
       },
       400
     );

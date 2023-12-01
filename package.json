@@ -10,7 +10,8 @@
     "@aws-sdk/credential-providers": "^3.454.0",
     "@prisma/client": "^5.6.0",
     "dotenv": "^16.3.1",
-    "hono": "^3.10.2"
+    "hono": "^3.10.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "bun-types": "^1.0.14"
