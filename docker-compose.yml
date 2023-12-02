@@ -9,6 +9,7 @@ services:
     container_name: movie-backend
     image: marine-movie-backend:0.1.0
     build: .
+    restart: always
     environment:
       PORT: 3001
       DATABASE_URL: mysql://root:root@MySql:3306/marine-films
