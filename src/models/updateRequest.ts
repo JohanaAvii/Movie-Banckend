@@ -1,4 +1,4 @@
-import { Solicitud_estado } from "@prisma/client";
+import { Solicitud_estado } from "../generated/client";
 import prismaClient from "../helpers/prismaClient";
 
 export const updateRequest = async (

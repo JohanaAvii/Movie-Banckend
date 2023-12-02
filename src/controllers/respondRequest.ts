@@ -1,6 +1,6 @@
 import { Context, Env } from "hono";
 import { updateRequest } from "../models";
-import { Solicitud_estado } from "@prisma/client";
+import { Solicitud_estado } from "../generated/client";
 
 const respondRequestController = async (
   context: Context<Env, "/movie/request/response", {}>

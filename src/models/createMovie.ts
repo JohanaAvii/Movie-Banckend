@@ -1,4 +1,4 @@
-import { Pelicula } from "@prisma/client";
+import { Pelicula } from "../generated/client";
 import prismaClient from "../helpers/prismaClient";
 
 export const createMovie = async (userId: number, movieData: Pelicula) => {
