@@ -52,13 +52,13 @@ export namespace $Enums {
 export type Solicitud_estado = (typeof Solicitud_estado)[keyof typeof Solicitud_estado]
 
 
-export const Usuario_rol: {
+export const Rol: {
   USUARIO: 'USUARIO',
   ADMIN: 'ADMIN',
   PRODUCTOR: 'PRODUCTOR'
 };
 
-export type Usuario_rol = (typeof Usuario_rol)[keyof typeof Usuario_rol]
+export type Rol = (typeof Rol)[keyof typeof Rol]
 
 }
 
@@ -66,9 +66,9 @@ export type Solicitud_estado = $Enums.Solicitud_estado
 
 export const Solicitud_estado: typeof $Enums.Solicitud_estado
 
-export type Usuario_rol = $Enums.Usuario_rol
+export type Rol = $Enums.Rol
 
-export const Usuario_rol: typeof $Enums.Usuario_rol
+export const Rol: typeof $Enums.Rol
 
 /**
  * ##  Prisma Client ʲˢ
@@ -2546,8 +2546,8 @@ export namespace Prisma {
     aws_url?: boolean
     aws_trailer?: boolean
     solicitud_id?: boolean
-    solicitud?: boolean | SolicitudDefaultArgs<ExtArgs>
     Actores?: boolean | Pelicula$ActoresArgs<ExtArgs>
+    solicitud?: boolean | SolicitudDefaultArgs<ExtArgs>
     _count?: boolean | PeliculaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pelicula"]>
 
@@ -2567,8 +2567,8 @@ export namespace Prisma {
   }
 
   export type PeliculaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    solicitud?: boolean | SolicitudDefaultArgs<ExtArgs>
     Actores?: boolean | Pelicula$ActoresArgs<ExtArgs>
+    solicitud?: boolean | SolicitudDefaultArgs<ExtArgs>
     _count?: boolean | PeliculaCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2576,8 +2576,8 @@ export namespace Prisma {
   export type $PeliculaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Pelicula"
     objects: {
-      solicitud: Prisma.$SolicitudPayload<ExtArgs>
       Actores: Prisma.$ActoresOnPeliculasPayload<ExtArgs>[]
+      solicitud: Prisma.$SolicitudPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2957,9 +2957,9 @@ export namespace Prisma {
   export interface Prisma__PeliculaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    solicitud<T extends SolicitudDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SolicitudDefaultArgs<ExtArgs>>): Prisma__SolicitudClient<$Result.GetResult<Prisma.$SolicitudPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
     Actores<T extends Pelicula$ActoresArgs<ExtArgs> = {}>(args?: Subset<T, Pelicula$ActoresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActoresOnPeliculasPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    solicitud<T extends SolicitudDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SolicitudDefaultArgs<ExtArgs>>): Prisma__SolicitudClient<$Result.GetResult<Prisma.$SolicitudPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4487,8 +4487,8 @@ export namespace Prisma {
     fecha_respuesta?: boolean
     observaciones?: boolean
     usuario_id?: boolean
-    Usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     Pelicula?: boolean | Solicitud$PeliculaArgs<ExtArgs>
+    Usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["solicitud"]>
 
   export type SolicitudSelectScalar = {
@@ -4501,16 +4501,16 @@ export namespace Prisma {
   }
 
   export type SolicitudInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     Pelicula?: boolean | Solicitud$PeliculaArgs<ExtArgs>
+    Usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
   }
 
 
   export type $SolicitudPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Solicitud"
     objects: {
-      Usuario: Prisma.$UsuarioPayload<ExtArgs>
       Pelicula: Prisma.$PeliculaPayload<ExtArgs> | null
+      Usuario: Prisma.$UsuarioPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4884,9 +4884,9 @@ export namespace Prisma {
   export interface Prisma__SolicitudClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    Usuario<T extends UsuarioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuarioDefaultArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
     Pelicula<T extends Solicitud$PeliculaArgs<ExtArgs> = {}>(args?: Subset<T, Solicitud$PeliculaArgs<ExtArgs>>): Prisma__PeliculaClient<$Result.GetResult<Prisma.$PeliculaPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    Usuario<T extends UsuarioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuarioDefaultArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5290,7 +5290,7 @@ export namespace Prisma {
     correo: string | null
     genero: string | null
     telefono: string | null
-    rol: $Enums.Usuario_rol | null
+    rol: $Enums.Rol | null
     password: string | null
     primer_apellido: string | null
     primer_nombre: string | null
@@ -5303,7 +5303,7 @@ export namespace Prisma {
     correo: string | null
     genero: string | null
     telefono: string | null
-    rol: $Enums.Usuario_rol | null
+    rol: $Enums.Rol | null
     password: string | null
     primer_apellido: string | null
     primer_nombre: string | null
@@ -5465,7 +5465,7 @@ export namespace Prisma {
     correo: string
     genero: string
     telefono: string
-    rol: $Enums.Usuario_rol
+    rol: $Enums.Rol
     password: string
     primer_apellido: string
     primer_nombre: string
@@ -5536,7 +5536,7 @@ export namespace Prisma {
       correo: string
       genero: string
       telefono: string
-      rol: $Enums.Usuario_rol
+      rol: $Enums.Rol
       password: string
       primer_apellido: string
       primer_nombre: string
@@ -5941,7 +5941,7 @@ export namespace Prisma {
     readonly correo: FieldRef<"Usuario", 'String'>
     readonly genero: FieldRef<"Usuario", 'String'>
     readonly telefono: FieldRef<"Usuario", 'String'>
-    readonly rol: FieldRef<"Usuario", 'Usuario_rol'>
+    readonly rol: FieldRef<"Usuario", 'Rol'>
     readonly password: FieldRef<"Usuario", 'String'>
     readonly primer_apellido: FieldRef<"Usuario", 'String'>
     readonly primer_nombre: FieldRef<"Usuario", 'String'>
@@ -6437,9 +6437,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Usuario_rol'
+   * Reference to a field of type 'Rol'
    */
-  export type EnumUsuario_rolFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Usuario_rol'>
+  export type EnumRolFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Rol'>
     
   /**
    * Deep Input Types
@@ -6514,8 +6514,8 @@ export namespace Prisma {
     aws_url?: StringNullableFilter<"Pelicula"> | string | null
     aws_trailer?: StringNullableFilter<"Pelicula"> | string | null
     solicitud_id?: IntFilter<"Pelicula"> | number
-    solicitud?: XOR<SolicitudRelationFilter, SolicitudWhereInput>
     Actores?: ActoresOnPeliculasListRelationFilter
+    solicitud?: XOR<SolicitudRelationFilter, SolicitudWhereInput>
   }
 
   export type PeliculaOrderByWithRelationInput = {
@@ -6531,8 +6531,8 @@ export namespace Prisma {
     aws_url?: SortOrderInput | SortOrder
     aws_trailer?: SortOrderInput | SortOrder
     solicitud_id?: SortOrder
-    solicitud?: SolicitudOrderByWithRelationInput
     Actores?: ActoresOnPeliculasOrderByRelationAggregateInput
+    solicitud?: SolicitudOrderByWithRelationInput
   }
 
   export type PeliculaWhereUniqueInput = Prisma.AtLeast<{
@@ -6551,8 +6551,8 @@ export namespace Prisma {
     url_poster?: StringFilter<"Pelicula"> | string
     aws_url?: StringNullableFilter<"Pelicula"> | string | null
     aws_trailer?: StringNullableFilter<"Pelicula"> | string | null
-    solicitud?: XOR<SolicitudRelationFilter, SolicitudWhereInput>
     Actores?: ActoresOnPeliculasListRelationFilter
+    solicitud?: XOR<SolicitudRelationFilter, SolicitudWhereInput>
   }, "id" | "solicitud_id">
 
   export type PeliculaOrderByWithAggregationInput = {
@@ -6649,8 +6649,8 @@ export namespace Prisma {
     fecha_respuesta?: DateTimeNullableFilter<"Solicitud"> | Date | string | null
     observaciones?: StringNullableFilter<"Solicitud"> | string | null
     usuario_id?: IntFilter<"Solicitud"> | number
-    Usuario?: XOR<UsuarioRelationFilter, UsuarioWhereInput>
     Pelicula?: XOR<PeliculaNullableRelationFilter, PeliculaWhereInput> | null
+    Usuario?: XOR<UsuarioRelationFilter, UsuarioWhereInput>
   }
 
   export type SolicitudOrderByWithRelationInput = {
@@ -6660,8 +6660,8 @@ export namespace Prisma {
     fecha_respuesta?: SortOrderInput | SortOrder
     observaciones?: SortOrderInput | SortOrder
     usuario_id?: SortOrder
-    Usuario?: UsuarioOrderByWithRelationInput
     Pelicula?: PeliculaOrderByWithRelationInput
+    Usuario?: UsuarioOrderByWithRelationInput
   }
 
   export type SolicitudWhereUniqueInput = Prisma.AtLeast<{
@@ -6674,8 +6674,8 @@ export namespace Prisma {
     fecha_respuesta?: DateTimeNullableFilter<"Solicitud"> | Date | string | null
     observaciones?: StringNullableFilter<"Solicitud"> | string | null
     usuario_id?: IntFilter<"Solicitud"> | number
-    Usuario?: XOR<UsuarioRelationFilter, UsuarioWhereInput>
     Pelicula?: XOR<PeliculaNullableRelationFilter, PeliculaWhereInput> | null
+    Usuario?: XOR<UsuarioRelationFilter, UsuarioWhereInput>
   }, "id">
 
   export type SolicitudOrderByWithAggregationInput = {
@@ -6712,7 +6712,7 @@ export namespace Prisma {
     correo?: StringFilter<"Usuario"> | string
     genero?: StringFilter<"Usuario"> | string
     telefono?: StringFilter<"Usuario"> | string
-    rol?: EnumUsuario_rolFilter<"Usuario"> | $Enums.Usuario_rol
+    rol?: EnumRolFilter<"Usuario"> | $Enums.Rol
     password?: StringFilter<"Usuario"> | string
     primer_apellido?: StringFilter<"Usuario"> | string
     primer_nombre?: StringFilter<"Usuario"> | string
@@ -6743,7 +6743,7 @@ export namespace Prisma {
     NOT?: UsuarioWhereInput | UsuarioWhereInput[]
     genero?: StringFilter<"Usuario"> | string
     telefono?: StringFilter<"Usuario"> | string
-    rol?: EnumUsuario_rolFilter<"Usuario"> | $Enums.Usuario_rol
+    rol?: EnumRolFilter<"Usuario"> | $Enums.Rol
     password?: StringFilter<"Usuario"> | string
     primer_apellido?: StringFilter<"Usuario"> | string
     primer_nombre?: StringFilter<"Usuario"> | string
@@ -6778,7 +6778,7 @@ export namespace Prisma {
     correo?: StringWithAggregatesFilter<"Usuario"> | string
     genero?: StringWithAggregatesFilter<"Usuario"> | string
     telefono?: StringWithAggregatesFilter<"Usuario"> | string
-    rol?: EnumUsuario_rolWithAggregatesFilter<"Usuario"> | $Enums.Usuario_rol
+    rol?: EnumRolWithAggregatesFilter<"Usuario"> | $Enums.Rol
     password?: StringWithAggregatesFilter<"Usuario"> | string
     primer_apellido?: StringWithAggregatesFilter<"Usuario"> | string
     primer_nombre?: StringWithAggregatesFilter<"Usuario"> | string
@@ -6847,8 +6847,8 @@ export namespace Prisma {
     url_poster: string
     aws_url?: string | null
     aws_trailer?: string | null
-    solicitud: SolicitudCreateNestedOneWithoutPeliculaInput
     Actores?: ActoresOnPeliculasCreateNestedManyWithoutPeliculaInput
+    solicitud: SolicitudCreateNestedOneWithoutPeliculaInput
   }
 
   export type PeliculaUncheckedCreateInput = {
@@ -6878,8 +6878,8 @@ export namespace Prisma {
     url_poster?: StringFieldUpdateOperationsInput | string
     aws_url?: NullableStringFieldUpdateOperationsInput | string | null
     aws_trailer?: NullableStringFieldUpdateOperationsInput | string | null
-    solicitud?: SolicitudUpdateOneRequiredWithoutPeliculaNestedInput
     Actores?: ActoresOnPeliculasUpdateManyWithoutPeliculaNestedInput
+    solicitud?: SolicitudUpdateOneRequiredWithoutPeliculaNestedInput
   }
 
   export type PeliculaUncheckedUpdateInput = {
@@ -6980,8 +6980,8 @@ export namespace Prisma {
     fecha_envio?: Date | string | null
     fecha_respuesta?: Date | string | null
     observaciones?: string | null
-    Usuario: UsuarioCreateNestedOneWithoutSolicitudInput
     Pelicula?: PeliculaCreateNestedOneWithoutSolicitudInput
+    Usuario: UsuarioCreateNestedOneWithoutSolicitudInput
   }
 
   export type SolicitudUncheckedCreateInput = {
@@ -6999,8 +6999,8 @@ export namespace Prisma {
     fecha_envio?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     fecha_respuesta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     observaciones?: NullableStringFieldUpdateOperationsInput | string | null
-    Usuario?: UsuarioUpdateOneRequiredWithoutSolicitudNestedInput
     Pelicula?: PeliculaUpdateOneWithoutSolicitudNestedInput
+    Usuario?: UsuarioUpdateOneRequiredWithoutSolicitudNestedInput
   }
 
   export type SolicitudUncheckedUpdateInput = {
@@ -7042,7 +7042,7 @@ export namespace Prisma {
     correo: string
     genero: string
     telefono: string
-    rol: $Enums.Usuario_rol
+    rol: $Enums.Rol
     password: string
     primer_apellido: string
     primer_nombre: string
@@ -7056,7 +7056,7 @@ export namespace Prisma {
     correo: string
     genero: string
     telefono: string
-    rol: $Enums.Usuario_rol
+    rol: $Enums.Rol
     password: string
     primer_apellido: string
     primer_nombre: string
@@ -7069,7 +7069,7 @@ export namespace Prisma {
     correo?: StringFieldUpdateOperationsInput | string
     genero?: StringFieldUpdateOperationsInput | string
     telefono?: StringFieldUpdateOperationsInput | string
-    rol?: EnumUsuario_rolFieldUpdateOperationsInput | $Enums.Usuario_rol
+    rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
     password?: StringFieldUpdateOperationsInput | string
     primer_apellido?: StringFieldUpdateOperationsInput | string
     primer_nombre?: StringFieldUpdateOperationsInput | string
@@ -7083,7 +7083,7 @@ export namespace Prisma {
     correo?: StringFieldUpdateOperationsInput | string
     genero?: StringFieldUpdateOperationsInput | string
     telefono?: StringFieldUpdateOperationsInput | string
-    rol?: EnumUsuario_rolFieldUpdateOperationsInput | $Enums.Usuario_rol
+    rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
     password?: StringFieldUpdateOperationsInput | string
     primer_apellido?: StringFieldUpdateOperationsInput | string
     primer_nombre?: StringFieldUpdateOperationsInput | string
@@ -7097,7 +7097,7 @@ export namespace Prisma {
     correo: string
     genero: string
     telefono: string
-    rol: $Enums.Usuario_rol
+    rol: $Enums.Rol
     password: string
     primer_apellido: string
     primer_nombre: string
@@ -7109,7 +7109,7 @@ export namespace Prisma {
     correo?: StringFieldUpdateOperationsInput | string
     genero?: StringFieldUpdateOperationsInput | string
     telefono?: StringFieldUpdateOperationsInput | string
-    rol?: EnumUsuario_rolFieldUpdateOperationsInput | $Enums.Usuario_rol
+    rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
     password?: StringFieldUpdateOperationsInput | string
     primer_apellido?: StringFieldUpdateOperationsInput | string
     primer_nombre?: StringFieldUpdateOperationsInput | string
@@ -7122,7 +7122,7 @@ export namespace Prisma {
     correo?: StringFieldUpdateOperationsInput | string
     genero?: StringFieldUpdateOperationsInput | string
     telefono?: StringFieldUpdateOperationsInput | string
-    rol?: EnumUsuario_rolFieldUpdateOperationsInput | $Enums.Usuario_rol
+    rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
     password?: StringFieldUpdateOperationsInput | string
     primer_apellido?: StringFieldUpdateOperationsInput | string
     primer_nombre?: StringFieldUpdateOperationsInput | string
@@ -7425,14 +7425,14 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type UsuarioRelationFilter = {
-    is?: UsuarioWhereInput
-    isNot?: UsuarioWhereInput
-  }
-
   export type PeliculaNullableRelationFilter = {
     is?: PeliculaWhereInput | null
     isNot?: PeliculaWhereInput | null
+  }
+
+  export type UsuarioRelationFilter = {
+    is?: UsuarioWhereInput
+    isNot?: UsuarioWhereInput
   }
 
   export type SolicitudCountOrderByAggregateInput = {
@@ -7496,11 +7496,11 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type EnumUsuario_rolFilter<$PrismaModel = never> = {
-    equals?: $Enums.Usuario_rol | EnumUsuario_rolFieldRefInput<$PrismaModel>
-    in?: $Enums.Usuario_rol[]
-    notIn?: $Enums.Usuario_rol[]
-    not?: NestedEnumUsuario_rolFilter<$PrismaModel> | $Enums.Usuario_rol
+  export type EnumRolFilter<$PrismaModel = never> = {
+    equals?: $Enums.Rol | EnumRolFieldRefInput<$PrismaModel>
+    in?: $Enums.Rol[]
+    notIn?: $Enums.Rol[]
+    not?: NestedEnumRolFilter<$PrismaModel> | $Enums.Rol
   }
 
   export type SolicitudListRelationFilter = {
@@ -7560,14 +7560,14 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type EnumUsuario_rolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Usuario_rol | EnumUsuario_rolFieldRefInput<$PrismaModel>
-    in?: $Enums.Usuario_rol[]
-    notIn?: $Enums.Usuario_rol[]
-    not?: NestedEnumUsuario_rolWithAggregatesFilter<$PrismaModel> | $Enums.Usuario_rol
+  export type EnumRolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Rol | EnumRolFieldRefInput<$PrismaModel>
+    in?: $Enums.Rol[]
+    notIn?: $Enums.Rol[]
+    not?: NestedEnumRolWithAggregatesFilter<$PrismaModel> | $Enums.Rol
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumUsuario_rolFilter<$PrismaModel>
-    _max?: NestedEnumUsuario_rolFilter<$PrismaModel>
+    _min?: NestedEnumRolFilter<$PrismaModel>
+    _max?: NestedEnumRolFilter<$PrismaModel>
   }
 
   export type ActoresOnPeliculasCreateNestedManyWithoutActorInput = {
@@ -7624,17 +7624,17 @@ export namespace Prisma {
     deleteMany?: ActoresOnPeliculasScalarWhereInput | ActoresOnPeliculasScalarWhereInput[]
   }
 
-  export type SolicitudCreateNestedOneWithoutPeliculaInput = {
-    create?: XOR<SolicitudCreateWithoutPeliculaInput, SolicitudUncheckedCreateWithoutPeliculaInput>
-    connectOrCreate?: SolicitudCreateOrConnectWithoutPeliculaInput
-    connect?: SolicitudWhereUniqueInput
-  }
-
   export type ActoresOnPeliculasCreateNestedManyWithoutPeliculaInput = {
     create?: XOR<ActoresOnPeliculasCreateWithoutPeliculaInput, ActoresOnPeliculasUncheckedCreateWithoutPeliculaInput> | ActoresOnPeliculasCreateWithoutPeliculaInput[] | ActoresOnPeliculasUncheckedCreateWithoutPeliculaInput[]
     connectOrCreate?: ActoresOnPeliculasCreateOrConnectWithoutPeliculaInput | ActoresOnPeliculasCreateOrConnectWithoutPeliculaInput[]
     createMany?: ActoresOnPeliculasCreateManyPeliculaInputEnvelope
     connect?: ActoresOnPeliculasWhereUniqueInput | ActoresOnPeliculasWhereUniqueInput[]
+  }
+
+  export type SolicitudCreateNestedOneWithoutPeliculaInput = {
+    create?: XOR<SolicitudCreateWithoutPeliculaInput, SolicitudUncheckedCreateWithoutPeliculaInput>
+    connectOrCreate?: SolicitudCreateOrConnectWithoutPeliculaInput
+    connect?: SolicitudWhereUniqueInput
   }
 
   export type ActoresOnPeliculasUncheckedCreateNestedManyWithoutPeliculaInput = {
@@ -7660,14 +7660,6 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type SolicitudUpdateOneRequiredWithoutPeliculaNestedInput = {
-    create?: XOR<SolicitudCreateWithoutPeliculaInput, SolicitudUncheckedCreateWithoutPeliculaInput>
-    connectOrCreate?: SolicitudCreateOrConnectWithoutPeliculaInput
-    upsert?: SolicitudUpsertWithoutPeliculaInput
-    connect?: SolicitudWhereUniqueInput
-    update?: XOR<XOR<SolicitudUpdateToOneWithWhereWithoutPeliculaInput, SolicitudUpdateWithoutPeliculaInput>, SolicitudUncheckedUpdateWithoutPeliculaInput>
-  }
-
   export type ActoresOnPeliculasUpdateManyWithoutPeliculaNestedInput = {
     create?: XOR<ActoresOnPeliculasCreateWithoutPeliculaInput, ActoresOnPeliculasUncheckedCreateWithoutPeliculaInput> | ActoresOnPeliculasCreateWithoutPeliculaInput[] | ActoresOnPeliculasUncheckedCreateWithoutPeliculaInput[]
     connectOrCreate?: ActoresOnPeliculasCreateOrConnectWithoutPeliculaInput | ActoresOnPeliculasCreateOrConnectWithoutPeliculaInput[]
@@ -7680,6 +7672,14 @@ export namespace Prisma {
     update?: ActoresOnPeliculasUpdateWithWhereUniqueWithoutPeliculaInput | ActoresOnPeliculasUpdateWithWhereUniqueWithoutPeliculaInput[]
     updateMany?: ActoresOnPeliculasUpdateManyWithWhereWithoutPeliculaInput | ActoresOnPeliculasUpdateManyWithWhereWithoutPeliculaInput[]
     deleteMany?: ActoresOnPeliculasScalarWhereInput | ActoresOnPeliculasScalarWhereInput[]
+  }
+
+  export type SolicitudUpdateOneRequiredWithoutPeliculaNestedInput = {
+    create?: XOR<SolicitudCreateWithoutPeliculaInput, SolicitudUncheckedCreateWithoutPeliculaInput>
+    connectOrCreate?: SolicitudCreateOrConnectWithoutPeliculaInput
+    upsert?: SolicitudUpsertWithoutPeliculaInput
+    connect?: SolicitudWhereUniqueInput
+    update?: XOR<XOR<SolicitudUpdateToOneWithWhereWithoutPeliculaInput, SolicitudUpdateWithoutPeliculaInput>, SolicitudUncheckedUpdateWithoutPeliculaInput>
   }
 
   export type ActoresOnPeliculasUncheckedUpdateManyWithoutPeliculaNestedInput = {
@@ -7724,16 +7724,16 @@ export namespace Prisma {
     update?: XOR<XOR<PeliculaUpdateToOneWithWhereWithoutActoresInput, PeliculaUpdateWithoutActoresInput>, PeliculaUncheckedUpdateWithoutActoresInput>
   }
 
-  export type UsuarioCreateNestedOneWithoutSolicitudInput = {
-    create?: XOR<UsuarioCreateWithoutSolicitudInput, UsuarioUncheckedCreateWithoutSolicitudInput>
-    connectOrCreate?: UsuarioCreateOrConnectWithoutSolicitudInput
-    connect?: UsuarioWhereUniqueInput
-  }
-
   export type PeliculaCreateNestedOneWithoutSolicitudInput = {
     create?: XOR<PeliculaCreateWithoutSolicitudInput, PeliculaUncheckedCreateWithoutSolicitudInput>
     connectOrCreate?: PeliculaCreateOrConnectWithoutSolicitudInput
     connect?: PeliculaWhereUniqueInput
+  }
+
+  export type UsuarioCreateNestedOneWithoutSolicitudInput = {
+    create?: XOR<UsuarioCreateWithoutSolicitudInput, UsuarioUncheckedCreateWithoutSolicitudInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutSolicitudInput
+    connect?: UsuarioWhereUniqueInput
   }
 
   export type PeliculaUncheckedCreateNestedOneWithoutSolicitudInput = {
@@ -7750,14 +7750,6 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type UsuarioUpdateOneRequiredWithoutSolicitudNestedInput = {
-    create?: XOR<UsuarioCreateWithoutSolicitudInput, UsuarioUncheckedCreateWithoutSolicitudInput>
-    connectOrCreate?: UsuarioCreateOrConnectWithoutSolicitudInput
-    upsert?: UsuarioUpsertWithoutSolicitudInput
-    connect?: UsuarioWhereUniqueInput
-    update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutSolicitudInput, UsuarioUpdateWithoutSolicitudInput>, UsuarioUncheckedUpdateWithoutSolicitudInput>
-  }
-
   export type PeliculaUpdateOneWithoutSolicitudNestedInput = {
     create?: XOR<PeliculaCreateWithoutSolicitudInput, PeliculaUncheckedCreateWithoutSolicitudInput>
     connectOrCreate?: PeliculaCreateOrConnectWithoutSolicitudInput
@@ -7766,6 +7758,14 @@ export namespace Prisma {
     delete?: PeliculaWhereInput | boolean
     connect?: PeliculaWhereUniqueInput
     update?: XOR<XOR<PeliculaUpdateToOneWithWhereWithoutSolicitudInput, PeliculaUpdateWithoutSolicitudInput>, PeliculaUncheckedUpdateWithoutSolicitudInput>
+  }
+
+  export type UsuarioUpdateOneRequiredWithoutSolicitudNestedInput = {
+    create?: XOR<UsuarioCreateWithoutSolicitudInput, UsuarioUncheckedCreateWithoutSolicitudInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutSolicitudInput
+    upsert?: UsuarioUpsertWithoutSolicitudInput
+    connect?: UsuarioWhereUniqueInput
+    update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutSolicitudInput, UsuarioUpdateWithoutSolicitudInput>, UsuarioUncheckedUpdateWithoutSolicitudInput>
   }
 
   export type PeliculaUncheckedUpdateOneWithoutSolicitudNestedInput = {
@@ -7792,8 +7792,8 @@ export namespace Prisma {
     connect?: SolicitudWhereUniqueInput | SolicitudWhereUniqueInput[]
   }
 
-  export type EnumUsuario_rolFieldUpdateOperationsInput = {
-    set?: $Enums.Usuario_rol
+  export type EnumRolFieldUpdateOperationsInput = {
+    set?: $Enums.Rol
   }
 
   export type SolicitudUpdateManyWithoutUsuarioNestedInput = {
@@ -8017,21 +8017,21 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type NestedEnumUsuario_rolFilter<$PrismaModel = never> = {
-    equals?: $Enums.Usuario_rol | EnumUsuario_rolFieldRefInput<$PrismaModel>
-    in?: $Enums.Usuario_rol[]
-    notIn?: $Enums.Usuario_rol[]
-    not?: NestedEnumUsuario_rolFilter<$PrismaModel> | $Enums.Usuario_rol
+  export type NestedEnumRolFilter<$PrismaModel = never> = {
+    equals?: $Enums.Rol | EnumRolFieldRefInput<$PrismaModel>
+    in?: $Enums.Rol[]
+    notIn?: $Enums.Rol[]
+    not?: NestedEnumRolFilter<$PrismaModel> | $Enums.Rol
   }
 
-  export type NestedEnumUsuario_rolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Usuario_rol | EnumUsuario_rolFieldRefInput<$PrismaModel>
-    in?: $Enums.Usuario_rol[]
-    notIn?: $Enums.Usuario_rol[]
-    not?: NestedEnumUsuario_rolWithAggregatesFilter<$PrismaModel> | $Enums.Usuario_rol
+  export type NestedEnumRolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Rol | EnumRolFieldRefInput<$PrismaModel>
+    in?: $Enums.Rol[]
+    notIn?: $Enums.Rol[]
+    not?: NestedEnumRolWithAggregatesFilter<$PrismaModel> | $Enums.Rol
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumUsuario_rolFilter<$PrismaModel>
-    _max?: NestedEnumUsuario_rolFilter<$PrismaModel>
+    _min?: NestedEnumRolFilter<$PrismaModel>
+    _max?: NestedEnumRolFilter<$PrismaModel>
   }
 
   export type ActoresOnPeliculasCreateWithoutActorInput = {
@@ -8076,6 +8076,24 @@ export namespace Prisma {
     pelicula_id?: IntFilter<"ActoresOnPeliculas"> | number
   }
 
+  export type ActoresOnPeliculasCreateWithoutPeliculaInput = {
+    actor: ActoresCreateNestedOneWithoutPeliculaInput
+  }
+
+  export type ActoresOnPeliculasUncheckedCreateWithoutPeliculaInput = {
+    actor_id: number
+  }
+
+  export type ActoresOnPeliculasCreateOrConnectWithoutPeliculaInput = {
+    where: ActoresOnPeliculasWhereUniqueInput
+    create: XOR<ActoresOnPeliculasCreateWithoutPeliculaInput, ActoresOnPeliculasUncheckedCreateWithoutPeliculaInput>
+  }
+
+  export type ActoresOnPeliculasCreateManyPeliculaInputEnvelope = {
+    data: ActoresOnPeliculasCreateManyPeliculaInput | ActoresOnPeliculasCreateManyPeliculaInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SolicitudCreateWithoutPeliculaInput = {
     estado?: $Enums.Solicitud_estado | null
     fecha_envio?: Date | string | null
@@ -8098,22 +8116,20 @@ export namespace Prisma {
     create: XOR<SolicitudCreateWithoutPeliculaInput, SolicitudUncheckedCreateWithoutPeliculaInput>
   }
 
-  export type ActoresOnPeliculasCreateWithoutPeliculaInput = {
-    actor: ActoresCreateNestedOneWithoutPeliculaInput
-  }
-
-  export type ActoresOnPeliculasUncheckedCreateWithoutPeliculaInput = {
-    actor_id: number
-  }
-
-  export type ActoresOnPeliculasCreateOrConnectWithoutPeliculaInput = {
+  export type ActoresOnPeliculasUpsertWithWhereUniqueWithoutPeliculaInput = {
     where: ActoresOnPeliculasWhereUniqueInput
+    update: XOR<ActoresOnPeliculasUpdateWithoutPeliculaInput, ActoresOnPeliculasUncheckedUpdateWithoutPeliculaInput>
     create: XOR<ActoresOnPeliculasCreateWithoutPeliculaInput, ActoresOnPeliculasUncheckedCreateWithoutPeliculaInput>
   }
 
-  export type ActoresOnPeliculasCreateManyPeliculaInputEnvelope = {
-    data: ActoresOnPeliculasCreateManyPeliculaInput | ActoresOnPeliculasCreateManyPeliculaInput[]
-    skipDuplicates?: boolean
+  export type ActoresOnPeliculasUpdateWithWhereUniqueWithoutPeliculaInput = {
+    where: ActoresOnPeliculasWhereUniqueInput
+    data: XOR<ActoresOnPeliculasUpdateWithoutPeliculaInput, ActoresOnPeliculasUncheckedUpdateWithoutPeliculaInput>
+  }
+
+  export type ActoresOnPeliculasUpdateManyWithWhereWithoutPeliculaInput = {
+    where: ActoresOnPeliculasScalarWhereInput
+    data: XOR<ActoresOnPeliculasUpdateManyMutationInput, ActoresOnPeliculasUncheckedUpdateManyWithoutPeliculaInput>
   }
 
   export type SolicitudUpsertWithoutPeliculaInput = {
@@ -8142,22 +8158,6 @@ export namespace Prisma {
     fecha_respuesta?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     observaciones?: NullableStringFieldUpdateOperationsInput | string | null
     usuario_id?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ActoresOnPeliculasUpsertWithWhereUniqueWithoutPeliculaInput = {
-    where: ActoresOnPeliculasWhereUniqueInput
-    update: XOR<ActoresOnPeliculasUpdateWithoutPeliculaInput, ActoresOnPeliculasUncheckedUpdateWithoutPeliculaInput>
-    create: XOR<ActoresOnPeliculasCreateWithoutPeliculaInput, ActoresOnPeliculasUncheckedCreateWithoutPeliculaInput>
-  }
-
-  export type ActoresOnPeliculasUpdateWithWhereUniqueWithoutPeliculaInput = {
-    where: ActoresOnPeliculasWhereUniqueInput
-    data: XOR<ActoresOnPeliculasUpdateWithoutPeliculaInput, ActoresOnPeliculasUncheckedUpdateWithoutPeliculaInput>
-  }
-
-  export type ActoresOnPeliculasUpdateManyWithWhereWithoutPeliculaInput = {
-    where: ActoresOnPeliculasScalarWhereInput
-    data: XOR<ActoresOnPeliculasUpdateManyMutationInput, ActoresOnPeliculasUncheckedUpdateManyWithoutPeliculaInput>
   }
 
   export type ActoresCreateWithoutPeliculaInput = {
@@ -8276,36 +8276,6 @@ export namespace Prisma {
     solicitud_id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type UsuarioCreateWithoutSolicitudInput = {
-    correo: string
-    genero: string
-    telefono: string
-    rol: $Enums.Usuario_rol
-    password: string
-    primer_apellido: string
-    primer_nombre: string
-    segundo_apellido?: string | null
-    segundo_nombre?: string | null
-  }
-
-  export type UsuarioUncheckedCreateWithoutSolicitudInput = {
-    id?: number
-    correo: string
-    genero: string
-    telefono: string
-    rol: $Enums.Usuario_rol
-    password: string
-    primer_apellido: string
-    primer_nombre: string
-    segundo_apellido?: string | null
-    segundo_nombre?: string | null
-  }
-
-  export type UsuarioCreateOrConnectWithoutSolicitudInput = {
-    where: UsuarioWhereUniqueInput
-    create: XOR<UsuarioCreateWithoutSolicitudInput, UsuarioUncheckedCreateWithoutSolicitudInput>
-  }
-
   export type PeliculaCreateWithoutSolicitudInput = {
     nombre: string
     sipnosis: string
@@ -8340,40 +8310,34 @@ export namespace Prisma {
     create: XOR<PeliculaCreateWithoutSolicitudInput, PeliculaUncheckedCreateWithoutSolicitudInput>
   }
 
-  export type UsuarioUpsertWithoutSolicitudInput = {
-    update: XOR<UsuarioUpdateWithoutSolicitudInput, UsuarioUncheckedUpdateWithoutSolicitudInput>
+  export type UsuarioCreateWithoutSolicitudInput = {
+    correo: string
+    genero: string
+    telefono: string
+    rol: $Enums.Rol
+    password: string
+    primer_apellido: string
+    primer_nombre: string
+    segundo_apellido?: string | null
+    segundo_nombre?: string | null
+  }
+
+  export type UsuarioUncheckedCreateWithoutSolicitudInput = {
+    id?: number
+    correo: string
+    genero: string
+    telefono: string
+    rol: $Enums.Rol
+    password: string
+    primer_apellido: string
+    primer_nombre: string
+    segundo_apellido?: string | null
+    segundo_nombre?: string | null
+  }
+
+  export type UsuarioCreateOrConnectWithoutSolicitudInput = {
+    where: UsuarioWhereUniqueInput
     create: XOR<UsuarioCreateWithoutSolicitudInput, UsuarioUncheckedCreateWithoutSolicitudInput>
-    where?: UsuarioWhereInput
-  }
-
-  export type UsuarioUpdateToOneWithWhereWithoutSolicitudInput = {
-    where?: UsuarioWhereInput
-    data: XOR<UsuarioUpdateWithoutSolicitudInput, UsuarioUncheckedUpdateWithoutSolicitudInput>
-  }
-
-  export type UsuarioUpdateWithoutSolicitudInput = {
-    correo?: StringFieldUpdateOperationsInput | string
-    genero?: StringFieldUpdateOperationsInput | string
-    telefono?: StringFieldUpdateOperationsInput | string
-    rol?: EnumUsuario_rolFieldUpdateOperationsInput | $Enums.Usuario_rol
-    password?: StringFieldUpdateOperationsInput | string
-    primer_apellido?: StringFieldUpdateOperationsInput | string
-    primer_nombre?: StringFieldUpdateOperationsInput | string
-    segundo_apellido?: NullableStringFieldUpdateOperationsInput | string | null
-    segundo_nombre?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type UsuarioUncheckedUpdateWithoutSolicitudInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    correo?: StringFieldUpdateOperationsInput | string
-    genero?: StringFieldUpdateOperationsInput | string
-    telefono?: StringFieldUpdateOperationsInput | string
-    rol?: EnumUsuario_rolFieldUpdateOperationsInput | $Enums.Usuario_rol
-    password?: StringFieldUpdateOperationsInput | string
-    primer_apellido?: StringFieldUpdateOperationsInput | string
-    primer_nombre?: StringFieldUpdateOperationsInput | string
-    segundo_apellido?: NullableStringFieldUpdateOperationsInput | string | null
-    segundo_nombre?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PeliculaUpsertWithoutSolicitudInput = {
@@ -8414,6 +8378,42 @@ export namespace Prisma {
     aws_url?: NullableStringFieldUpdateOperationsInput | string | null
     aws_trailer?: NullableStringFieldUpdateOperationsInput | string | null
     Actores?: ActoresOnPeliculasUncheckedUpdateManyWithoutPeliculaNestedInput
+  }
+
+  export type UsuarioUpsertWithoutSolicitudInput = {
+    update: XOR<UsuarioUpdateWithoutSolicitudInput, UsuarioUncheckedUpdateWithoutSolicitudInput>
+    create: XOR<UsuarioCreateWithoutSolicitudInput, UsuarioUncheckedCreateWithoutSolicitudInput>
+    where?: UsuarioWhereInput
+  }
+
+  export type UsuarioUpdateToOneWithWhereWithoutSolicitudInput = {
+    where?: UsuarioWhereInput
+    data: XOR<UsuarioUpdateWithoutSolicitudInput, UsuarioUncheckedUpdateWithoutSolicitudInput>
+  }
+
+  export type UsuarioUpdateWithoutSolicitudInput = {
+    correo?: StringFieldUpdateOperationsInput | string
+    genero?: StringFieldUpdateOperationsInput | string
+    telefono?: StringFieldUpdateOperationsInput | string
+    rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
+    password?: StringFieldUpdateOperationsInput | string
+    primer_apellido?: StringFieldUpdateOperationsInput | string
+    primer_nombre?: StringFieldUpdateOperationsInput | string
+    segundo_apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    segundo_nombre?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type UsuarioUncheckedUpdateWithoutSolicitudInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    correo?: StringFieldUpdateOperationsInput | string
+    genero?: StringFieldUpdateOperationsInput | string
+    telefono?: StringFieldUpdateOperationsInput | string
+    rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
+    password?: StringFieldUpdateOperationsInput | string
+    primer_apellido?: StringFieldUpdateOperationsInput | string
+    primer_nombre?: StringFieldUpdateOperationsInput | string
+    segundo_apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    segundo_nombre?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SolicitudCreateWithoutUsuarioInput = {

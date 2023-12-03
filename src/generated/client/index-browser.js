@@ -171,7 +171,7 @@ exports.Solicitud_estado = exports.$Enums.Solicitud_estado = {
   APROBADA: 'APROBADA'
 };
 
-exports.Usuario_rol = exports.$Enums.Usuario_rol = {
+exports.Rol = exports.$Enums.Rol = {
   USUARIO: 'USUARIO',
   ADMIN: 'ADMIN',
   PRODUCTOR: 'PRODUCTOR'

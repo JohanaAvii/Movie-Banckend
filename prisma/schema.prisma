@@ -29,18 +29,19 @@ model Pelicula {
   url_poster         String
   aws_url            String?
   aws_trailer        String?
-  solicitud          Solicitud            @relation(fields: [solicitud_id], references: [id])
   solicitud_id       Int                  @unique
   Actores            ActoresOnPeliculas[]
+  solicitud          Solicitud            @relation(fields: [solicitud_id], references: [id])
 }
 
 model ActoresOnPeliculas {
-  actor       Actores  @relation(fields: [actor_id], references: [id])
   actor_id    Int
-  pelicula    Pelicula @relation(fields: [pelicula_id], references: [id])
   pelicula_id Int
+  actor       Actores  @relation(fields: [actor_id], references: [id])
+  pelicula    Pelicula @relation(fields: [pelicula_id], references: [id])
 
   @@id([actor_id, pelicula_id])
+  @@index([pelicula_id], map: "ActoresOnPeliculas_pelicula_id_fkey")
 }
 
 model Solicitud {
@@ -50,8 +51,8 @@ model Solicitud {
   fecha_respuesta DateTime?
   observaciones   String?
   usuario_id      Int
-  Usuario         Usuario           @relation(fields: [usuario_id], references: [id])
   Pelicula        Pelicula?
+  Usuario         Usuario           @relation(fields: [usuario_id], references: [id])
 
   @@index([usuario_id], map: "Solicitud_usuario_id_fkey")
 }
@@ -61,7 +62,7 @@ model Usuario {
   correo           String      @unique @db.VarChar(50)
   genero           String      @db.Char(1)
   telefono         String      @db.VarChar(10)
-  rol              Usuario_rol
+  rol              Rol
   password         String
   primer_apellido  String      @db.VarChar(20)
   primer_nombre    String      @db.VarChar(20)
@@ -76,7 +77,7 @@ enum Solicitud_estado {
   APROBADA
 }
 
-enum Usuario_rol {
+enum Rol {
   USUARIO
   ADMIN
   PRODUCTOR
