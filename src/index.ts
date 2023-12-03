@@ -35,6 +35,7 @@ app.post(
 console.log(`Bun run on: ${process.env.PORT}`);
 
 Bun.serve({
+  port: process.env.PORT ?? 80,
   fetch: app.fetch,
   maxRequestBodySize: 8000000000,
 });
