@@ -19,11 +19,14 @@ const respondRequestController = async (
       body: request,
     });
   } catch (error) {
-    return context.json({
-      error: true,
-      message: "Error al responder la solicitud.",
-      body: error,
-    });
+    return context.json(
+      {
+        error: true,
+        message: "Error al responder la solicitud.",
+        body: error,
+      },
+      500
+    );
   }
 };
 

@@ -24,7 +24,7 @@ const createRequest = async (context: Context<Env, "/movie/request", {}>) => {
         message: "Error al crear la solicitud.",
         body: error,
       },
-      201
+      500
     );
   }
 };
