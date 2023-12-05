@@ -14,18 +14,18 @@ const app = new Hono();
 
 app.use("*", cors());
 app.use(
-  "/movie/*",
+  "/request/*",
   jwt({
     secret: process.env.SECRET_SEED ?? "",
   })
 );
 app.post("/lambda/link-movie", linkMovie);
 
-app.post("/movie/upload", uploadVideo);
-app.get("/movie/listing", movieListing);
-app.post("/movie/request", validateFields(requestSchema), createRequest);
+app.post("/request/upload", uploadVideo);
+app.get("/request/listing", movieListing);
+app.post("/request/", validateFields(requestSchema), createRequest);
 app.post(
-  "/movie/request/response",
+  "/request/response",
   validateFields(respondSchema),
   respondRequestController
 );
