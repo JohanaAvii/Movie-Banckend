@@ -23,7 +23,7 @@ app.post("/lambda/link-movie", linkMovie);
 
 app.post("/request/upload", uploadVideo);
 app.get("/request/listing", movieListing);
-app.post("/request/", validateFields(requestSchema), createRequest);
+app.post("/request", validateFields(requestSchema), createRequest);
 app.post(
   "/request/response",
   validateFields(respondSchema),
