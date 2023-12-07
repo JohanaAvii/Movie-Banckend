@@ -6,14 +6,12 @@ import {
   movieListing,
 } from "./controllers";
 import { Hono } from "hono";
-import { cors } from "hono/cors";
 import { jwt } from "hono/jwt";
 import { validateFields } from "./services/validateFields";
 import { requestSchema, respondSchema } from "./schemas";
 import { getPendingRequests } from "./controllers/getPendingRequests";
 const app = new Hono();
 
-app.use("*", cors());
 app.use(
   "/request/*",
   jwt({
