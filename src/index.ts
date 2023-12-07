@@ -10,6 +10,7 @@ import { cors } from "hono/cors";
 import { jwt } from "hono/jwt";
 import { validateFields } from "./services/validateFields";
 import { requestSchema, respondSchema } from "./schemas";
+import { getPendingRequests } from "./controllers/getPendingRequests";
 const app = new Hono();
 
 app.use("*", cors());
@@ -21,15 +22,15 @@ app.use(
 );
 app.post("/lambda/link-movie", linkMovie);
 
-app.post("/request/upload", uploadVideo);
-app.get("/request/listing", movieListing);
-app.post("/request", validateFields(requestSchema), createRequest);
 app.post(
   "/request/response",
   validateFields(respondSchema),
   respondRequestController
 );
-
+app.post("/request/upload", uploadVideo);
+app.get("/request/listing", movieListing);
+app.post("/request", validateFields(requestSchema), createRequest);
+app.get("/request", getPendingRequests);
 console.log(`Bun run on: ${process.env.PORT}`);
 
 Bun.serve({

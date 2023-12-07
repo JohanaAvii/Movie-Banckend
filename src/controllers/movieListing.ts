@@ -2,7 +2,7 @@ import { Context, Env } from "hono";
 import { getMovieListing } from "../models/getMovieListing";
 
 export const movieListing = async (
-  context: Context<Env, "/movie/listing", {}>
+  context: Context<Env, "/request/listing", {}>
 ) => {
   const { size, page } = context.req.query();
   try {

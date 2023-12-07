@@ -1,13 +1,11 @@
 import { Context, Env } from "hono";
-import { readFileSync, writeFileSync, rmSync, existsSync, mkdirSync } from "fs";
-import { join } from "path";
 import { uploadToS3 } from "../services/awsService";
 
-const uploadVideo = async (context: Context<Env, "/movie/upload", {}>) => {
-  const tempPath = join(import.meta.dir, "../../temp");
-  if (!existsSync(tempPath)) {
-    mkdirSync(tempPath);
-  }
+const uploadVideo = async (context: Context<Env, "/request/upload", {}>) => {
+  // const tempPath = join(import.meta.dir, "../../temp");
+  // if (!existsSync(tempPath)) {
+  //   mkdirSync(tempPath);
+  // }
   const body = await context.req.parseBody();
   const video = body.video as File;
   if (video == null || body.movie == null)
@@ -23,11 +21,11 @@ const uploadVideo = async (context: Context<Env, "/movie/upload", {}>) => {
   fileName.replace("-", "");
 
   try {
-    const buffer = await video.arrayBuffer();
-    writeFileSync(`${tempPath}/${fileName}`, buffer);
-    const fileBuffer = readFileSync(`${tempPath}/${fileName}`);
-    await uploadToS3(fileName, fileBuffer);
-    rmSync(`${tempPath}/${fileName}`);
+    const bufferArray = await video.arrayBuffer();
+    // writeFileSync(`${tempPath}/${fileName}`, buffer);
+    // const fileBuffer = readFileSync(`${tempPath}/${fileName}`);
+    await uploadToS3(fileName, Buffer.from(bufferArray));
+    // rmSync(`${tempPath}/${fileName}`);
     return context.json({
       error: false,
       message: "Archivo subido correctamente.",
