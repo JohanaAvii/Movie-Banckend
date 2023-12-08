@@ -15,6 +15,8 @@ const getPendingRequests = async (context: Context<Env, "/request", {}>) => {
       body: request,
     });
   } catch (error) {
+    console.log(error);
+
     return context.json({
       error: true,
       message: "Error al consultar las solicitudes.",
