@@ -10,13 +10,31 @@ export const getRequests = (page: number, size: number) => {
     }
     try {
       const offset = page * size;
-      const requests =
-        (await prismaClient.$queryRaw`select * from Solicitud join Pelicula P on Solicitud.id = P.solicitud_id limit ${offset}, ${size}`) as Solicitud[];
+      const requests = await prismaClient.solicitud.findMany({
+        skip: offset,
+        take: size,
+        include: {
+          Pelicula: true,
+          Usuario: {
+            select: {
+              id: true,
+              correo: true,
+              genero: true,
+              telefono: true,
+              rol: true,
+              primer_apellido: true,
+              primer_nombre: true,
+              segundo_apellido: true,
+              segundo_nombre: true,
+              password: false,
+            },
+          },
+        },
+      });
       const count =
         (await prismaClient.$queryRaw`select count(*) as count from Solicitud join Pelicula P on Solicitud.id = P.solicitud_id `) as [
           { count: string }
         ];
-
       resolve({
         count: Number.parseInt(count[0].count),
         next: requests.length == size ? page + 1 : null,
