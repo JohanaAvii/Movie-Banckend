@@ -1,14 +1,9 @@
 import { Context, Env } from "hono";
 import { uploadToS3 } from "../services/awsService";
-
 const uploadVideo = async (context: Context<Env, "/request/upload", {}>) => {
-  // const tempPath = join(import.meta.dir, "../../temp");
-  // if (!existsSync(tempPath)) {
-  //   mkdirSync(tempPath);
-  // }
-  const body = await context.req.parseBody();
-  const video = body.video as File;
-  if (video == null || body.movie == null)
+  const body = await context.req.json();
+
+  if (body.video == null || body.movie == null)
     return context.json(
       {
         error: false,
@@ -17,20 +12,17 @@ const uploadVideo = async (context: Context<Env, "/request/upload", {}>) => {
       400
     );
 
+  const video = body.video.file as Uint8Array;
   const fileName = `id${body.movie}uuid${crypto.randomUUID()}.mp4`;
   fileName.replace("-", "");
 
   try {
-    const bufferArray = await video.arrayBuffer();
-    // writeFileSync(`${tempPath}/${fileName}`, buffer);
-    // const fileBuffer = readFileSync(`${tempPath}/${fileName}`);
-    await uploadToS3(fileName, Buffer.from(bufferArray));
-    // rmSync(`${tempPath}/${fileName}`);
+    await uploadToS3(fileName, Buffer.from(video));
     return context.json({
       error: false,
       message: "Archivo subido correctamente.",
       body: {
-        name: video.name,
+        name: body.video.fileName,
         awsName: fileName,
       },
     });
