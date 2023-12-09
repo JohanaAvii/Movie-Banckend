@@ -8,12 +8,9 @@ import {
 import { Hono } from "hono";
 import { jwt } from "hono/jwt";
 import { validateFields } from "./services/validateFields";
-// import { cors } from "hono/cors";
 import { requestSchema, respondSchema } from "./schemas";
 import { getPendingRequests } from "./controllers/getPendingRequests";
 const app = new Hono();
-
-// app.use("*", cors());
 
 app.use(
   "/request/*",
