@@ -6,6 +6,7 @@ packages/*/*.wasm
 *.a
 profile.json
 
+src/generated/*
 node_modules
 node_modules/*
 temp
