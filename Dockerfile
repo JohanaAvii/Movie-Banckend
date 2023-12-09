@@ -32,6 +32,9 @@ COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/app/ .
 # COPY --from=prerelease /usr/app/package.json .
 
+# Generate prisma client
+RUN bunx prisma generate
+
 # run the app
 USER bun
 ENTRYPOINT [ "bun", "run", "src/index.ts" ]
