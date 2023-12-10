@@ -10,6 +10,7 @@ import { jwt } from "hono/jwt";
 import { validateFields } from "./services/validateFields";
 import { requestSchema, respondSchema } from "./schemas";
 import { getPendingRequests } from "./controllers/getPendingRequests";
+import { getMovie } from "./controllers/getMovie";
 const app = new Hono();
 
 app.use(
@@ -29,6 +30,7 @@ app.post("/request/upload", uploadVideo);
 app.get("/request/listing", movieListing);
 app.post("/request", validateFields(requestSchema), createRequest);
 app.get("/request", getPendingRequests);
+app.get("/request/movie/:id", getMovie);
 
 console.log(`Bun run on: ${process.env.PORT}`);
 
