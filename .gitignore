@@ -11,7 +11,7 @@ node_modules
 node_modules/*
 temp
 .envrc
-.env
+*.env*
 .swcrc
 yarn.lock
 dist

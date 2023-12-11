@@ -1,7 +1,12 @@
-import { Solicitud } from "../generated/client";
+import { Rol, Solicitud } from "../generated/client";
 import prismaClient from "../helpers/prismaClient";
 
-export const getRequests = (page: number, size: number) => {
+export const getRequests = (
+  page: number,
+  size: number,
+  rol: Rol,
+  id?: number
+) => {
   return new Promise(async (resolve, reject) => {
     try {
       await prismaClient.$connect();
@@ -13,6 +18,12 @@ export const getRequests = (page: number, size: number) => {
       const requests = await prismaClient.solicitud.findMany({
         skip: offset,
         take: size,
+        where:
+          rol == "ADMIN"
+            ? undefined
+            : {
+                usuario_id: id,
+              },
         include: {
           Pelicula: true,
           Usuario: {
