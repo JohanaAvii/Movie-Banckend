@@ -15,7 +15,7 @@ const respondRequestController = async (
     );
     return context.json({
       error: false,
-      message: "",
+      message: "Solicitud respondida",
       body: request,
     });
   } catch (error) {

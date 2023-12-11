@@ -12,7 +12,7 @@ const createRequest = async (context: Context<Env, "/request", {}>) => {
     return context.json(
       {
         error: false,
-        message: "",
+        message: "Solicitud creada.",
         body: movie,
       },
       201
